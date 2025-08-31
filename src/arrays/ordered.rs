@@ -1,0 +1,80 @@
+pub struct LinearArr<T> {
+    arr: Vec<T>,
+    len: usize,
+}
+
+impl<T> LinearArr<T> {
+    pub fn new() -> Self {
+        Self { arr: Vec::new(), len: 0 }
+    }
+
+    pub fn new_with(arr: Vec<T>) -> Self {
+        let len = arr.len();
+        Self { arr, len }
+    }
+
+    pub fn insert(&mut self, index: usize, elem: T) {
+        if index > self.len {
+            panic!("Index can't be above length");
+        }
+
+        self.arr.push(elem); // temporarily add a new element
+        self.len += 1;
+
+        for i in (index+1..self.len).rev() {
+            self.arr.swap(i, i-1); // O(N)
+        }
+    }
+
+    pub fn get(&self, index: usize) -> Option<&T> {
+        self.arr.get(index) // O(1)
+    }
+
+    pub fn len(&self) -> usize {
+        self.len // O(1)
+    }
+}
+
+impl<T: PartialEq> LinearArr<T> {
+    pub fn index_of(&self, elem: &T) -> Option<usize> {
+        self.arr.iter().position(|t| elem == t) // O(N)
+    }
+
+    pub fn remove(&mut self, elem: &T) {
+        if self.len == 0 {
+            panic!("No elements to remove");
+        }
+        let Some(index) = self.index_of(elem) else {
+            panic!("Element is not in array");
+        };
+
+        for i in index+1..self.len {
+            self.arr.swap(i, i-1); // O(N)
+        }
+
+        self.len -= 1;
+        self.arr.pop();
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::arrays::ordered::*;
+
+    #[test]
+    fn insert_test() {
+        let mut arr = LinearArr::new();
+        arr.insert(0, 0); arr.insert(0, 1);
+
+        assert_eq!(arr.index_of(&1), Some(0));
+        assert_eq!(arr.index_of(&0), Some(1));
+    }
+
+    #[test]
+    fn remove_test() {
+        let mut arr = LinearArr::new_with(vec![1, 2, 3]);
+        arr.remove(&1); arr.remove(&2); arr.remove(&3);
+
+        assert_eq!(arr.len, 0);
+    }
+}
