@@ -1,3 +1,5 @@
+use std::ops::{Index, IndexMut};
+
 pub struct LinearArr<T> {
     arr: Vec<T>,
     len: usize,
@@ -33,11 +35,31 @@ impl<T> LinearArr<T> {
     pub fn len(&self) -> usize {
         self.len // O(1)
     }
+
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
+    }
 }
 
 impl<T: PartialEq> LinearArr<T> {
     pub fn index_of(&self, elem: &T) -> Option<usize> {
         self.arr.iter().position(|t| elem == t) // O(N)
+    }
+
+    pub fn remove_at(&mut self, index: usize) {
+        if self.len <= index {
+            panic!("Index is out of range");
+        }
+        if self.len == 0 {
+            panic!("No elements to remove");
+        }
+
+        for i in index+1..self.len {
+            self.arr.swap(i, i-1); // O(N)
+        }
+
+        self.len -= 1;
+        self.arr.pop();
     }
 
     pub fn remove(&mut self, elem: &T) {
@@ -48,12 +70,21 @@ impl<T: PartialEq> LinearArr<T> {
             panic!("Element is not in array");
         };
 
-        for i in index+1..self.len {
-            self.arr.swap(i, i-1); // O(N)
-        }
+        self.remove_at(index);
+    }
+}
 
-        self.len -= 1;
-        self.arr.pop();
+impl<T> Index<usize> for LinearArr<T> {
+    type Output = T;
+
+    fn index(&self, index: usize) -> &Self::Output {
+        self.arr.index(index)
+    }
+}
+
+impl<T> IndexMut<usize> for LinearArr<T> {
+    fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+        self.arr.index_mut(index)
     }
 }
 

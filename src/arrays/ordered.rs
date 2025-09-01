@@ -1,11 +1,12 @@
+use crate::arrays::linear::LinearArr;
+
 pub struct OrderedArr<T: PartialOrd> {
-    pub arr: Vec<T>,
-    pub len: usize,
+    pub arr: LinearArr<T>,
 }
 
 impl<T: PartialOrd> OrderedArr<T> {
     pub fn new() -> Self {
-        Self { arr: Vec::new(), len: 0 }
+        Self { arr: LinearArr::new() }
     }
 
     fn _verify_sortedness(arr: &Vec<T>) -> bool {
@@ -17,8 +18,7 @@ impl<T: PartialOrd> OrderedArr<T> {
             panic!("Can't create from an unsorted array");
         }
 
-        let len = arr.len();
-        Self { arr, len }
+        Self { arr: LinearArr::new_with(arr) }
     }
 
     pub fn get(&self, index: usize) -> Option<&T> {
@@ -26,7 +26,7 @@ impl<T: PartialOrd> OrderedArr<T> {
     }
 
     pub fn len(&self) -> usize {
-        self.len // O(1)
+        self.arr.len() // O(1)
     }
 
     fn _binary_search(&self, elem: &T) -> Result<usize, usize> {
@@ -35,7 +35,7 @@ impl<T: PartialOrd> OrderedArr<T> {
         }
 
         let mut lower_bound = 0;
-        let mut upper_bound = self.len-1;
+        let mut upper_bound = self.arr.len()-1;
         let mut middle;
 
         while lower_bound <= upper_bound {
@@ -65,7 +65,6 @@ impl<T: PartialOrd> OrderedArr<T> {
         };
 
         self.arr.insert(index, elem); // O(N)
-        self.len += 1;
     }
 
     pub fn index_of(&self, elem: &T) -> Option<usize> {
@@ -73,15 +72,14 @@ impl<T: PartialOrd> OrderedArr<T> {
     }
 
     pub fn remove(&mut self, elem: &T) {
-        if self.len == 0 {
+        if self.arr.is_empty() {
             panic!("No elements to remove");
         }
         let Some(index) = self.index_of(elem) else { // O(log N)
             panic!("Element is not in array");
         };
 
-        self.arr.remove(index); // O(N)
-        self.len -= 1;
+        self.arr.remove_at(index); // O(N)
     }
 }
 
@@ -125,6 +123,6 @@ mod tests {
         let mut arr = OrderedArr::new_with(vec![1, 2, 3]);
         arr.remove(&1); arr.remove(&2); arr.remove(&3);
 
-        assert_eq!(arr.len, 0);
+        assert_eq!(arr.len(), 0);
     }
 }
