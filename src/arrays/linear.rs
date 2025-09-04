@@ -1,4 +1,4 @@
-use std::ops::{Index, IndexMut};
+use std::{ops::{Index, IndexMut}, ptr};
 
 pub struct LinearArr<T> {
     arr: Vec<T>,
@@ -28,8 +28,33 @@ impl<T> LinearArr<T> {
         }
     }
 
+    pub fn remove_at(&mut self, index: usize) -> T {
+        if self.len <= index {
+            panic!("Index is out of range");
+        }
+        if self.len == 0 {
+            panic!("No elements to remove");
+        }
+
+        // Unsafe code is required for returning the removed element
+        unsafe {
+            let result = ptr::read(self.arr.as_ptr().add(index));
+
+            for i in index+1..self.len {
+                self.arr.swap(i, i-1); // O(N)
+            }
+
+            self.len -= 1;
+            result
+        }
+    }
+
     pub fn get(&self, index: usize) -> Option<&T> {
         self.arr.get(index) // O(1)
+    }
+
+    pub fn get_mut(&mut self, index: usize) -> Option<&mut T> {
+        self.arr.get_mut(index) // O(1)
     }
 
     pub fn len(&self) -> usize {
@@ -39,27 +64,15 @@ impl<T> LinearArr<T> {
     pub fn is_empty(&self) -> bool {
         self.len == 0
     }
+
+    pub fn iter(&self) -> Iter<'_, T> {
+        Iter { list: self, index: 0 }
+    }
 }
 
 impl<T: PartialEq> LinearArr<T> {
     pub fn index_of(&self, elem: &T) -> Option<usize> {
         self.arr.iter().position(|t| elem == t) // O(N)
-    }
-
-    pub fn remove_at(&mut self, index: usize) {
-        if self.len <= index {
-            panic!("Index is out of range");
-        }
-        if self.len == 0 {
-            panic!("No elements to remove");
-        }
-
-        for i in index+1..self.len {
-            self.arr.swap(i, i-1); // O(N)
-        }
-
-        self.len -= 1;
-        self.arr.pop();
     }
 
     pub fn remove(&mut self, elem: &T) {
@@ -74,9 +87,51 @@ impl<T: PartialEq> LinearArr<T> {
     }
 }
 
+pub struct IntoIter<T> {
+    arr: LinearArr<T>,
+}
+
+impl<T> Iterator for IntoIter<T> {
+    type Item = T;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.arr.is_empty() {
+            return None;
+        }
+        Some(self.arr.remove_at(0)) // O(N)
+    }
+}
+
+impl<T> IntoIterator for LinearArr<T> {
+    type Item = T;
+    type IntoIter = IntoIter<T>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        IntoIter { arr: self }        
+    }
+}
+
+pub struct Iter<'a, T> {
+    list: &'a LinearArr<T>,
+    index: usize,
+}
+
+impl<'a, T> Iterator for Iter<'a, T> {
+    type Item = &'a T;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.index < self.list.len() {
+            self.index += 1;
+            return self.list.get(self.index-1); // O(1)
+        }
+
+        None
+    }
+}
+
 impl<T> Index<usize> for LinearArr<T> {
     type Output = T;
-
+    
     fn index(&self, index: usize) -> &Self::Output {
         self.arr.index(index)
     }
