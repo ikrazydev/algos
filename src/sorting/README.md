@@ -10,8 +10,8 @@ This also means that every iteration you need to sort one less element, which is
 Altogether, it makes the time complexity of this primitive sorting algorithm to be N * N, which is $\ O(N^2) $ in Big O notation.
 
 The provided implementation uses some optimizations (early return, decreasing array length),
-however it's time complexity is still considered to be $\ O(N^2) $.
-That demonstrates why Big O isn't the only (or best, in many situations) way to describe the efficiency of an algorithm.
+however its time complexity is still considered to be $\ O(N^2) $.
+That demonstrates why Big O isn't the only (nor best, in many situations) way to describe the efficiency of an algorithm.
 
 # Selection Sort
 
