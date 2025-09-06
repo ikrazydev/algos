@@ -1,2 +1,2 @@
-mod bubble;
-mod selection;
+pub mod bubble;
+pub mod selection;
