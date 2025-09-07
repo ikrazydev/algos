@@ -11,11 +11,11 @@ Most of the code is written in Rust, for maximum algorithm-pilling.
 
 I try to provide detailed documentation on the explained structures and algorithms.
 
-- [x] Arrays
+- [x] [Arrays](src/arrays/)
+- [x] [Sorting](src/sorting/)
 - [ ] Trees
-- [x] Sorting
 - [ ] Graphs
-- [ ] Stochastic (esp. Markov chains)
+- [ ] Stochastic *(esp. Markov chains)*
 - [ ] PRNG
 
 **Linear algebra:**
@@ -25,7 +25,14 @@ I try to provide detailed documentation on the explained structures and algorith
 - [ ] Matrices
 - [ ] Tensors
 
-Some future ideas for the project:
+**Calculus in code:**
+
+- [ ] Numerical Integrations
+- [ ] Series Approximations (`sin`, `exp`, `ln`)
+- [ ] Equation Solvers
+- [ ] Differential Equations
+
+## Future ideas for the project
 
 - [ ] Benchmarking
 - [ ] Visualizations
