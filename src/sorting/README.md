@@ -15,14 +15,14 @@ Result: The largest element is pushed to the end.
 
 This also means that with every iteration you need to sort one less element, which gives you some room for optimization.
 
-Funnily enough, there's an even better solution.
-The `bubble_sort_optimized` function utilizes the "last swap" optimization technique.
+Funnily enough, there's an even better optimization.
+The `bubble_sort_optimized` function utilizes the "last swap" technique.
 It can be thought of as an extension to "the largest unsorted element is at the end" rule.
 
 Instead of sorting one less element each time, you essentially "check" how many elements are *already* sorted.
 All of the elements after the last swap have already been sorted (since they didn't get swapped),
-meaning we don't have to go through any of them next time. 
-That lets you shrink your sorting field by multiple elements each pass, instead of just one,
+so we don't have to go through any of them next time. 
+That lets you shrink your sorting field by (potentially) multiple elements each pass, instead of just one,
 thus greatly improving performance.
 Knowing your algorithms well makes a big difference.
 
@@ -37,6 +37,9 @@ More specifically,
 The provided implementation uses some optimizations (early return, passes decreasing in length),
 however its time complexity is still considered to be $\ O(N^2) $.
 That demonstrates why Big O isn't the only (nor the best, in many situations) way to describe the efficiency of an algorithm.
+
+That is also why it's considered to be the simplest sorting algorithm.
+Easy to teach, but even with its optimizations, is still largely inferior to more performant algorithms.
 
 # Selection Sort
 

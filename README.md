@@ -7,6 +7,7 @@ You can use it to study, to explore, to enjoy, etc.
 It's really just a DSA playground and handbook in one.
 
 Most of the code is written in Rust, for maximum algorithm-pilling.
+> However, Python examples are being planned for the future.
 
 I try to provide detailed documentation on the explained structures and algorithms.
 
