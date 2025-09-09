@@ -18,11 +18,9 @@ I try to provide detailed documentation on the explained structures and algorith
 - [ ] Stochastic *(esp. Markov chains)*
 - [ ] PRNG
 
-**Classical mechanics:**
+<details>
 
-- [ ] Position, distance, and displacement
-- [ ] Acceleration
-- [ ] Newton laws
+<summary>Advanced (not soon to be implemented)</summary>
 
 **Linear algebra:**
 
@@ -37,6 +35,14 @@ I try to provide detailed documentation on the explained structures and algorith
 - [ ] Series Approximations (`sin`, `exp`, `ln`)
 - [ ] Equation Solvers
 - [ ] Differential Equations
+
+**Classical mechanics:**
+
+- [ ] Position, distance, and displacement
+- [ ] Acceleration
+- [ ] Newton laws
+
+</details>
 
 ## Future ideas for the project
 
