@@ -16,7 +16,7 @@ pub fn bubble_sort<T: PartialOrd>(arr: &mut [T]) {
 }
 
 pub fn bubble_sort_optimized<T: PartialOrd>(arr: &mut [T]) {
-   let mut n = arr.len();
+    let mut n = arr.len();
 
     while n > 1 {
         let mut new_n = 0;

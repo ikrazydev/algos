@@ -18,6 +18,12 @@ I try to provide detailed documentation on the explained structures and algorith
 - [ ] Stochastic *(esp. Markov chains)*
 - [ ] PRNG
 
+**Classical mechanics:**
+
+- [ ] Position, distance, and displacement
+- [ ] Acceleration
+- [ ] Newton laws
+
 **Linear algebra:**
 
 - [ ] Basic Introduction
