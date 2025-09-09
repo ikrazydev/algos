@@ -43,4 +43,35 @@ Easy to teach, but even with its optimizations, is still largely inferior to mor
 
 # Selection Sort
 
-TODO.
+Selection sort starts at the first element. The algorithm then finds the lowest element after it.
+If they're not the same elements, the two are swapped in places.
+Since the first element is already sorted, the algorithm moves onto the next element and performs the same procedure.
+
+As a result, there is one less iteration in the inner loop.
+
+That makes for an interesting phenomenon. Even though sorting algorithms, like bubble sort,
+have optimizations where the algorithm can be stopped once it figured out the entire array is already sorted,
+selection sort, on the other hand, always performs the same amount of steps.
+The only difference is the swap may not be performed if the current and lowest elements are the same.
+
+Since after each iteration, the amount of steps to perform decreases by 1,
+the amount of steps is approximately half of $\ N^2 $, or $\ O(N^2/2) $.
+However, in Big O, it is still categorized as $\ O(N^2) $ (and thus equivalent to bubble sort),
+since the notation disregards constants.
+
+From that, we can derive the time complexities of the algorithm:
+
+- **Worst Case**: *around half of* $\ O(N^2) $
+- **Average Case**: *around half of* $\ O(N^2) $
+- **Best Case**: *around half of* $\ O(N^2) $
+
+In actual notation, they're just considered $\ O(N^2) $.
+
+In most scenarios, even with a worse best case, selection sort is still going to be perform considerably faster
+than its pal, bubble sort. That fact is self-evident from the workings of the algorithms.
+
+In general, selection sort does not swap elements unnecessarilly,
+which seems to be the core weakness of bubble sorting.
+You can only benefit from bubble sorting if your arrays are mostly sorted,
+and the algorithm is optimized properly.
+Unfortunately, for most use cases, that usually is not the situation.

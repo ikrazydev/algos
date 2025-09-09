@@ -1,4 +1,4 @@
-pub fn bubble_sort<T: PartialOrd>(arr: &mut [T]) {
+pub fn bubble_sort<T: Ord>(arr: &mut [T]) {
     for i in 0..arr.len() {
         let mut swapped = false;
 
@@ -45,5 +45,23 @@ mod tests {
 
         assert_eq!(arr, vec![1, 2, 3, 4, 5]);
         assert_eq!(arr, arr2);
+    }
+
+    #[test]
+    pub fn bubble_sort_various() {
+        let mut arr: Vec<i32> = Vec::new();
+        let mut arr2 = vec![1];
+
+        bubble_sort(arr.as_mut_slice());
+        bubble_sort(arr2.as_mut_slice());
+
+        assert_eq!(arr, vec![]);
+        assert_eq!(arr2, vec![1]);
+
+        bubble_sort_optimized(arr.as_mut_slice());
+        bubble_sort_optimized(arr2.as_mut_slice());
+
+        assert_eq!(arr, vec![]);
+        assert_eq!(arr2, vec![1]);
     }
 }
