@@ -26,3 +26,11 @@ You don't need to specify the base of the logarithm, hence O(log N).
 
 Ordered arrays are a limitation on normal linear arrays,
 so the rest of the operations take the same time as they would on a linear array.
+
+# Hash Tables
+
+TODO.
+
+# Sets/Hash Sets
+
+TODO. *Might be cancelled.*

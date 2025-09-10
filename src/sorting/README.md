@@ -47,7 +47,7 @@ Selection sort starts at the first element. The algorithm then finds the lowest 
 If they're not the same elements, the two are swapped in places.
 Since the first element is already sorted, the algorithm moves onto the next element and performs the same procedure.
 
-As a result, there is one less iteration in the inner loop.
+As a result, the amount of steps in the lowest-element-searching loop decrements with each iteration.
 
 That makes for an interesting phenomenon. Even though sorting algorithms, like bubble sort,
 have optimizations where the algorithm can be stopped once it figured out the entire array is already sorted,
@@ -67,11 +67,15 @@ From that, we can derive the time complexities of the algorithm:
 
 In actual notation, they're just considered $\ O(N^2) $.
 
-In most scenarios, even with a worse best case, selection sort is still going to be perform considerably faster
+In most scenarios, even with an inferior best case, selection sort is still going to be perform considerably faster
 than its pal, bubble sort. That fact is self-evident from the workings of the algorithms.
 
-In general, selection sort does not swap elements unnecessarilly,
+In general, selection sort does not swap elements unnecessarily,
 which seems to be the core weakness of bubble sorting.
 You can only benefit from bubble sorting if your arrays are mostly sorted,
 and the algorithm is optimized properly.
 Unfortunately, for most use cases, that usually is not the situation.
+
+# Insertion Sort
+
+TODO.
