@@ -16,6 +16,7 @@ I try to provide detailed documentation on the presented structures and algorith
 - [ ] Trees
 - [ ] Graphs
 - [ ] Stochastic *(esp. Markov chains)*
+- [ ] Discrete
 - [ ] PRNG
 
 <details>
