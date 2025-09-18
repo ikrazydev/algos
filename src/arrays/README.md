@@ -29,7 +29,13 @@ so the rest of the operations take the same time as they would on a linear array
 
 # Hash Tables
 
-TODO.
+Hash tables are essentially arrays stored in buckets that have a key-value relationship.
+
+## Hash Functions
+
+There are perfect and imperfect hash functions.
+
+TODO: hash collisions.
 
 # Sets/Hash Sets
 
