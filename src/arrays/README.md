@@ -37,6 +37,6 @@ There are perfect and imperfect hash functions.
 
 TODO: hash collisions.
 
-# Sets/Hash Sets
+# Sets and Hash Sets
 
-TODO. *Might be cancelled.*
+TODO.
