@@ -13,6 +13,7 @@ I try to provide detailed documentation on the presented structures and algorith
 
 - [x] [Arrays](src/arrays/)
 - [x] [Sorting](src/sorting/)
+- [x] [Collections](src/collections/)
 - [ ] Trees
 - [ ] Graphs
 - [ ] Stochastic *(esp. Markov chains)*
